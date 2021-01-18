@@ -14,17 +14,7 @@ class PrecioController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Precio::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class PrecioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $precio = Precio::create($request->all());
+
+        return $precio;
     }
 
     /**
@@ -46,18 +38,7 @@ class PrecioController extends Controller
      */
     public function show(Precio $precio)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Precio  $precio
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Precio $precio)
-    {
-        //
+        return $precio;
     }
 
     /**
@@ -69,7 +50,10 @@ class PrecioController extends Controller
      */
     public function update(Request $request, Precio $precio)
     {
-        //
+        $precio->update($request->all());
+        $precio->save();
+
+        return $precio;
     }
 
     /**
@@ -80,6 +64,7 @@ class PrecioController extends Controller
      */
     public function destroy(Precio $precio)
     {
-        //
+        $precio->delete();
+        return $precio;
     }
 }
