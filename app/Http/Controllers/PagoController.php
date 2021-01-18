@@ -14,17 +14,12 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $pagos = Pago::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            "data" => $pagos,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -35,7 +30,13 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pago = Pago::create($request->all());
+
+        return response()->json([
+            "data" => $pago,
+            "satus" => 202,
+            "message" => "Pago creado correctamente",
+        ], 202);
     }
 
     /**
@@ -46,18 +47,10 @@ class PagoController extends Controller
      */
     public function show(Pago $pago)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pago  $pago
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pago $pago)
-    {
-        //
+        return response()->json([
+            "data" => $pago,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -69,7 +62,14 @@ class PagoController extends Controller
      */
     public function update(Request $request, Pago $pago)
     {
-        //
+        $pago->update($request->all());
+        $pago->save();
+
+        return  response()->json([
+            "data" => $pago,
+            "satus" => 200,
+            "message" => "Pago actualizado correctamente"
+        ], 200);
     }
 
     /**
@@ -80,6 +80,11 @@ class PagoController extends Controller
      */
     public function destroy(Pago $pago)
     {
-        //
+        $pago->delete();
+        return  response()->json([
+            "data" => $pago,
+            "satus" => 200,
+            "message" => "Pago eliminado correctamente"
+        ], 200);
     }
 }
