@@ -14,17 +14,12 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $empresas = Empresa::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            "data" => $empresas,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -35,7 +30,13 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empresa = Empresa::create($request->all());
+
+        return response()->json([
+            "data" => $empresa,
+            "satus" => 202,
+            "message" => "Empresa creado correctamente",
+        ], 202);
     }
 
     /**
@@ -46,18 +47,10 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Empresa $empresa)
-    {
-        //
+        return response()->json([
+            "data" => $empresa,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -69,7 +62,14 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $empresa->update($request->all());
+        $empresa->save();
+
+        return  response()->json([
+            "data" => $empresa,
+            "satus" => 200,
+            "message" => "Empresa actualizado correctamente"
+        ], 200);
     }
 
     /**
@@ -80,6 +80,11 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        $empresa->delete();
+        return  response()->json([
+            "data" => $empresa,
+            "satus" => 200,
+            "message" => "Empresa eliminado correctamente"
+        ], 200);
     }
 }

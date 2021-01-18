@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiResource('/precios', 'PrecioController');
+Route::apiResource('/empresas', 'EmpresaController');

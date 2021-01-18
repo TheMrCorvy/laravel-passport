@@ -47,7 +47,7 @@ class PrecioController extends Controller
      */
     public function show(Precio $precio)
     {
-        return  response()->json([
+        return response()->json([
             "data" => $precio,
             "satus" => 200,
         ], 200);
