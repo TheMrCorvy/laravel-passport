@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -33,7 +34,10 @@ class AlumnoController extends Controller
         $alumno = Alumno::create($request->all());
 
         return response()->json([
-            "data" => $alumno,
+            "data" => [
+                "alumno" => $alumno,
+                "empresa" => Empresa::find($alumno->id),
+            ],
             "satus" => 202,
             "message" => "Alumno creado correctamente",
         ], 202);
@@ -48,7 +52,10 @@ class AlumnoController extends Controller
     public function show(Alumno $alumno)
     {
         return response()->json([
-            "data" => $alumno,
+            "data" => [
+                "alumno" => $alumno,
+                "empresa" => Empresa::find($alumno->id),
+            ],
             "satus" => 200,
         ], 200);
     }
@@ -66,7 +73,10 @@ class AlumnoController extends Controller
         $alumno->save();
 
         return  response()->json([
-            "data" => $alumno,
+            "data" => [
+                "alumno" => $alumno,
+                "empresa" => Empresa::find($alumno->id),
+            ],
             "satus" => 200,
             "message" => "Alumno actualizado correctamente"
         ], 200);
@@ -82,7 +92,10 @@ class AlumnoController extends Controller
     {
         $alumno->delete();
         return  response()->json([
-            "data" => $alumno,
+            "data" => [
+                "alumno" => $alumno,
+                "empresa" => Empresa::find($alumno->id),
+            ],
             "satus" => 200,
             "message" => "Alumno eliminado correctamente"
         ], 200);
