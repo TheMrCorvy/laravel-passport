@@ -16,6 +16,15 @@ class CreateAlumnosTable extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->enum('state', ['Paid', 'Pending'])->default('Pending');
+            $table->boolean('peruvian');
+            $table->boolean('assistance');
+            $table->string('phone', 15);
+            $table->unsignedInteger('id_company');
+            $table->foreign('id_company')->references('id')->on('empresas');
         });
     }
 
