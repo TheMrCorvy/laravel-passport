@@ -14,17 +14,12 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $alumnos = Alumno::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            "data" => $alumnos,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -35,7 +30,13 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumno = Alumno::create($request->all());
+
+        return response()->json([
+            "data" => $alumno,
+            "satus" => 202,
+            "message" => "Alumno creado correctamente",
+        ], 202);
     }
 
     /**
@@ -46,18 +47,10 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Alumno  $alumno
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Alumno $alumno)
-    {
-        //
+        return response()->json([
+            "data" => $alumno,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -69,7 +62,14 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
-        //
+        $alumno->update($request->all());
+        $alumno->save();
+
+        return  response()->json([
+            "data" => $alumno,
+            "satus" => 200,
+            "message" => "Alumno actualizado correctamente"
+        ], 200);
     }
 
     /**
@@ -80,6 +80,11 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        return  response()->json([
+            "data" => $alumno,
+            "satus" => 200,
+            "message" => "Alumno eliminado correctamente"
+        ], 200);
     }
 }
