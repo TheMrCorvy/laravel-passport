@@ -14,7 +14,7 @@ class CreatePreciosTable extends Migration
     public function up()
     {
         Schema::create('precios', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
             $table->string('type', 255)->unique();
             $table->double('costo', '8', '2');

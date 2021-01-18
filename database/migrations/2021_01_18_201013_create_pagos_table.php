@@ -14,7 +14,7 @@ class CreatePagosTable extends Migration
     public function up()
     {
         Schema::create('pagos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
             $table->unsignedInteger('id_student');
             $table->foreign('id_student')->references('id')->on('alumnos');
