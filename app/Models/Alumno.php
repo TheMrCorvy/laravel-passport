@@ -19,4 +19,8 @@ class Alumno extends Model
         'phone',
         'id_company',
     ];
+
+    public function company () {
+        return $this->belongsTo('App\Empresa', 'id_company');
+    }
 }

@@ -13,4 +13,11 @@ class Pago extends Model
         'id_student',
         'id_cost'
     ];
+
+    public function student(){
+        return $this->belongsTo('App\Alumno', 'id_student');
+    }
+    public function cost(){
+        return $this->belongsTo('App\Pago', 'id_cost');
+    }
 }
