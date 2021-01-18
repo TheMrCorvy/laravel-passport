@@ -14,7 +14,12 @@ class PrecioController extends Controller
      */
     public function index()
     {
-        return Precio::all();
+        $precios = Precio::all();
+
+        return response()->json([
+            "data" => $precios,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -27,7 +32,11 @@ class PrecioController extends Controller
     {
         $precio = Precio::create($request->all());
 
-        return $precio;
+        return response()->json([
+            "data" => $precio,
+            "satus" => 202,
+            "message" => "Precio creado correctamente",
+        ], 202);
     }
 
     /**
@@ -38,7 +47,10 @@ class PrecioController extends Controller
      */
     public function show(Precio $precio)
     {
-        return $precio;
+        return  response()->json([
+            "data" => $precio,
+            "satus" => 200,
+        ], 200);
     }
 
     /**
@@ -53,7 +65,11 @@ class PrecioController extends Controller
         $precio->update($request->all());
         $precio->save();
 
-        return $precio;
+        return  response()->json([
+            "data" => $precio,
+            "satus" => 200,
+            "message" => "Precio actualizado correctamente"
+        ], 200);
     }
 
     /**
@@ -65,6 +81,10 @@ class PrecioController extends Controller
     public function destroy(Precio $precio)
     {
         $precio->delete();
-        return $precio;
+        return  response()->json([
+            "data" => $precio,
+            "satus" => 200,
+            "message" => "Precio eliminado correctamente"
+        ], 200);
     }
 }
