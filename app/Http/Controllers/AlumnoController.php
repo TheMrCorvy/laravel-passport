@@ -13,12 +13,13 @@ class AlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $alumnos = Alumno::all();
 
         return response()->json([
             "data" => $alumnos,
+            "token" => $request->user(),
             "satus" => 200,
         ], 200);
     }
