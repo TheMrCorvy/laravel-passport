@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 // en los json, en el header hay que poner siempre Accept: application/json
 
+// para installar passport en heroku: heroku run php artisan passport:install
+
 Route::post('/login', 'Auth\UserController@login');
 
 Route::post('/register', 'Auth\UserController@register');
