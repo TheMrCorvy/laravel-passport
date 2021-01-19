@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::post('/login', 'Auth\UserController@login');
+
 Route::group(['middleware' => 'auth:api'], function () 
 {
     Route::apiResource('/precios', 'PrecioController');
