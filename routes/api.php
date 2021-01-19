@@ -14,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+// en los json, en el header hay que poner siempre Accept: application/json
 
 Route::post('/login', 'Auth\UserController@login');
+
 Route::post('/register', 'Auth\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function () 
