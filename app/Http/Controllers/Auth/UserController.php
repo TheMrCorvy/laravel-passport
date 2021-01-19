@@ -15,10 +15,7 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
-        $data = [
-            'email' => request()->only('email'),
-            'password' => request()->only('password'),
-        ];
+        $data = $request->all();
 
         if (Auth::attempt($data)) {
 
