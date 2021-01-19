@@ -20,6 +20,7 @@ class AlumnoController extends Controller
         return response()->json([
             "data" => $alumnos,
             "token" => $request->user(),
+            "request" => $request->all(),
             "satus" => 200,
         ], 200);
     }

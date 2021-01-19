@@ -23,8 +23,11 @@ Route::post('/login', 'Auth\UserController@login');
 
 Route::post('/register', 'Auth\UserController@register');
 
+
 Route::group(['middleware' => 'auth:api'], function () 
 {
+    Route::get('logout','Auth\UserController@logout');
+    
     Route::apiResource('/precios', 'PrecioController');
 
     Route::apiResource('/empresas', 'EmpresaController');

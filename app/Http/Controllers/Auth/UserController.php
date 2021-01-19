@@ -11,6 +11,8 @@ use Auth;
 
 use Hash;
 
+use Laravel\Passport\TokenRepository;
+
 class UserController extends Controller
 {
     public function login(Request $request)
@@ -48,6 +50,19 @@ class UserController extends Controller
             'message' => 'Usuario registrado con éxito',
             'token' => $user->createToken('authToken')->accessToken,
             'status' => 200
+        ], 200);
+    }
+
+    // una vez cada x tiempo hay que dejar un scheduled job para que purgue a todos los tokens revocados
+    // https://laravel.com/docs/8.x/passport#purging-tokens
+    public function logout(Request $request)
+    {
+        $tokenRepository = app(TokenRepository::class);
+
+        $tokenRepository->revokeAccessToken($request->user()->token()->id);
+
+        return response()->json([
+            'message' => 'Sesión cerrada exitosamente'
         ], 200);
     }
 }
