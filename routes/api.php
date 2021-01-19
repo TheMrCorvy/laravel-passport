@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // en los json, en el header hay que poner siempre Accept: application/json
 
 // para installar passport en heroku: heroku run php artisan passport:install
+// tambien en el .gitIgnore (en la raiz del proyeccto) hay que eliminar la linea /storage/*.key para que las llaves se guerden correctamente en heroku, con la desventaja de que las llaves quedarian publicas
 
 Route::post('/login', 'Auth\UserController@login');
 
